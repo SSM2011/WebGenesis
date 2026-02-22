@@ -23,6 +23,7 @@ export const codeAgentFunction = inngest.createFunction(
 
     const sandboxId = await step.run("get-sandbox-id", async () => {
       const sandbox = await Sandbox.create("dynocoder1/vibe-nextjs-test-2")
+      await sandbox.setTimeout(60_000 * 10 * 3)
       return sandbox.sandboxId
     });
 
@@ -35,7 +36,8 @@ export const codeAgentFunction = inngest.createFunction(
         },
         orderBy: {
           createdAt: "desc", //TODO: change to "asc" if AI does not understand the latest message
-        }
+        },
+        take: 10,
       });
 
       for (const message of messages) {
@@ -46,7 +48,7 @@ export const codeAgentFunction = inngest.createFunction(
         })
       }
 
-      return formatedMessages;
+      return formatedMessages.reverse();
     });
 
     const state = createState<AgentState>({
