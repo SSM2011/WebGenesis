@@ -177,7 +177,3 @@ Ensure that:
 3. Run `npm run dev` and make your changes.
 4. Run `npm run lint` (and tests if configured).
 5. Open a pull request with a clear description of your changes.
-
-### License
-
-Add your preferred license here (e.g. MIT, Apache 2.0) or keep this section updated to match your actual license file.
